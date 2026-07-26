@@ -1,0 +1,22 @@
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        secretString = ""
+        for item in strs:
+            secretString += str(len(item)) + "#" + item
+        return secretString
+
+    def decode(self, s: str) -> List[str]:
+        res = []
+        i = 0
+
+        while i < len(s):
+            j = i
+            while s[j] != "#": #We have got the number.
+                j+=1
+            length =int(s[i:j])
+            i = j+1 #Starting from char just after "#"
+            j = i+length
+            res.append(s[i:j])
+            i = j
+        return res
